@@ -32,7 +32,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnLogin_clicked()
 {
-    TelaPrincipal abrirTelaPrincipal;
-    abrirTelaPrincipal.setModal(true);
-    abrirTelaPrincipal.exec();
+    QString nomeUsuario = ui->txtNome->text();
+    QString senhaUsuario = ui->txtSenha->text();
+
+    if(bancoDados.isOpen()){
+
+        //cria uma variável do tipo query para fazer a pesquisa no BD
+        QSqlQuery consultaNoBancoDeDados;
+
+        //exec -> vai me retornar true se conseguir fazer a pesquisa
+        if(consultaNoBancoDeDados.exec("SELECT * FROM Login WHERE nome = '"+nomeUsuario+"' and senha = '"+senhaUsuario+"'")){
+            int contaRegistrosEncontrados = 0;
+            while(consultaNoBancoDeDados.next()){
+                contaRegistrosEncontrados++;
+            }
+            if(contaRegistrosEncontrados == 1){
+                //fecha a tela Login
+                this->close();
+
+                //abre a Tela Principal
+                TelaPrincipal abrirTelaPrincipal;
+                abrirTelaPrincipal.setModal(true);
+                abrirTelaPrincipal.exec();
+            }else{
+                QMessageBox::critical(this, "Atenção!", "Usuário inválido ou senha inválida!");
+            }
+        }else{
+            QMessageBox::critical(this, "Atenção!", "O Banco de Dados não está aberto!");
+            return;
+        }
+    }
 }
