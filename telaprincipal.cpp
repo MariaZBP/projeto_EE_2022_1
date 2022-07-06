@@ -70,6 +70,12 @@ void TelaPrincipal::carregarDadosFuncionarios(){
             //f = double - moeda com 2 casas decimais
             salarioTexto = formato.toString(valorMoeda, 'f', 2);
             ui->lblTotalSalario->setText("Somatório dos Salários = R$ " + salarioTexto);
+
+            //exibe maior salário
+            QString salarioTexto2;
+            double valorMoeda2 = maiorSalario(ui->tableWidgetFuncionario, 3);
+            salarioTexto2 = formato.toString(valorMoeda2, 'f', 2);
+            ui->lblMaiorSalario->setText("Maior Salário = R$ " + salarioTexto2);
         }
 
         //títulos da tableWidgetFuncionario
@@ -151,6 +157,12 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
             //f = double - moeda com 2 casas decimais
             salarioTexto = formato.toString(valorMoeda, 'f', 2);
             ui->lblTotalSalario->setText("Somatório dos Salários = R$ " + salarioTexto);
+
+            //exibe maior salário
+            QString salarioTexto2;
+            double valorMoeda2 = maiorSalario(ui->tableWidgetFuncionario, 3);
+            salarioTexto2 = formato.toString(valorMoeda2, 'f', 2);
+            ui->lblMaiorSalario->setText("Maior Salário = R$ " + salarioTexto2);
         }
     }else{
         QMessageBox::information(this,"Atenção!", "Erro ao pesquisar funcionário!");
@@ -199,4 +211,20 @@ double TelaPrincipal::somarSalarios(QTableWidget *tabela, int coluna){
         total += tabela->item(linha, coluna)->text().toDouble();
     }
     return total;
+}
+
+double TelaPrincipal::maiorSalario(QTableWidget *tabela, int coluna){
+    int totalLinhas;
+    QVector<double> salario;
+    totalLinhas = tabela->rowCount();
+    for(int linha = 0; linha < totalLinhas; linha++){
+        salario.push_back(tabela->item(linha, coluna)->text().toDouble());
+    }
+    double maiorSalario = salario[0];
+    for(int i = 1; i < salario.size(); i++){
+        if(salario.at(i) > maiorSalario){
+            maiorSalario = salario.at(i);
+        }
+    }
+    return maiorSalario;
 }
