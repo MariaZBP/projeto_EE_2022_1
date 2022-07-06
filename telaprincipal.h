@@ -18,7 +18,7 @@ public:
     explicit TelaPrincipal(QWidget *parent = nullptr);
     ~TelaPrincipal();
 
-    void carregarDados();
+    void carregarDadosFuncionarios();
 
 private:
     Ui::TelaPrincipal *ui;
