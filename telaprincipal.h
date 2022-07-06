@@ -2,10 +2,10 @@
 #define TELAPRINCIPAL_H
 
 #include <QDialog>
-
 #include <QtSql>
 #include <QMessageBox>
 #include <QTableWidget>
+#include "cadastrofuncionario.h"
 
 namespace Ui {
 class TelaPrincipal;
@@ -25,6 +25,10 @@ public:
 
 private slots:
     void on_txtPesquisarFuncionario_textChanged(const QString &arg1);
+
+    void on_btnCadastrarFuncionario_clicked();
+
+    void on_btnExcluirFuncionario_clicked();
 
 private:
     Ui::TelaPrincipal *ui;

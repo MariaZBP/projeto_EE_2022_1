@@ -2,9 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
 #include <telaprincipal.h>
-
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>

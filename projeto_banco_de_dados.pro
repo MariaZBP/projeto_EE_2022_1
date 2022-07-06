@@ -27,15 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    telaprincipal.cpp
+    telaprincipal.cpp \
+    cadastrofuncionario.cpp
 
 HEADERS += \
         mainwindow.h \
-    telaprincipal.h
+    telaprincipal.h \
+    cadastrofuncionario.h
 
 FORMS += \
         mainwindow.ui \
-    telaprincipal.ui
+    telaprincipal.ui \
+    cadastrofuncionario.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

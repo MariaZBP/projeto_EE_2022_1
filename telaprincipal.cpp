@@ -9,25 +9,25 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
 
     //personalização da aba funcionários
     ui->txtPesquisarFuncionario->setStyleSheet("color: black;"
-                                 "background-color: #aaff7f;"
-                                 "selection-color: black;"
-                                 "selection-background-color: #aaff7f;");
+                                               "background-color: #aaff7f;"
+                                               "selection-color: black;"
+                                               "selection-background-color: #aaff7f;");
 
     ui->btnCadastrarFuncionario->setStyleSheet("color: black;"
-                                 "background-color: #00ff7f;"
-                                 "border-style: outset;"
-                                 "border-width: 2px;"
-                                 "border-radius: 10px;"
-                                 "border-color: white;"
-                                 "font: bold 16px;");
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
 
     ui->btnExcluirFuncionario->setStyleSheet("color: black;"
-                               "background-color: #00ff7f;"
-                               "border-style: outset;"
-                               "border-width: 2px;"
-                               "border-radius: 10px;"
-                               "border-color: white;"
-                               "font: bold 16px;");
+                                             "background-color: #00ff7f;"
+                                             "border-style: outset;"
+                                             "border-width: 2px;"
+                                             "border-radius: 10px;"
+                                             "border-color: white;"
+                                             "font: bold 16px;");
 
     //marcando e desmarcando o radio button
     ui->rdNome->setChecked(true);
@@ -43,6 +43,9 @@ TelaPrincipal::~TelaPrincipal()
 }
 
 void TelaPrincipal::carregarDadosFuncionarios(){
+
+    //limpa a tableWidgetFuncionario
+    limparTableWidGet(ui->tableWidgetFuncionario);
 
     //pega os dados do BD e exibe na tableWidgetFuncionario
     QSqlQuery pegaDados;
@@ -132,4 +135,19 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
     }else{
         QMessageBox::information(this,"Atenção!", "Erro ao pesquisar funcionário!");
     }
+}
+
+void TelaPrincipal::on_btnCadastrarFuncionario_clicked()
+{
+    CadastroFuncionario abreFormularioCadastro;
+    abreFormularioCadastro.exec();
+
+    //depois que cadastrar um funcionário, carrega os dados novamente
+    carregarDadosFuncionarios();
+}
+
+void TelaPrincipal::on_btnExcluirFuncionario_clicked()
+{
+    //começa da linha onde está selecionada
+    int linhaAtual = ui->tableWidgetFuncionario->currentRow();
 }
