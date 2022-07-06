@@ -175,12 +175,12 @@
          <normaloff>:/Imagens/Imagens/novo.png</normaloff>:/Imagens/Imagens/novo.png</iconset>
        </property>
       </widget>
-      <widget class="QLabel" name="lblTotalRegistros">
+      <widget class="QLabel" name="lblTotalSalario">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>730</y>
-         <width>341</width>
+         <width>391</width>
          <height>41</height>
         </rect>
        </property>
@@ -190,7 +190,46 @@
         </font>
        </property>
        <property name="text">
-        <string>Total de Registros</string>
+        <string>Total Salário</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblMaiorSalario">
+       <property name="geometry">
+        <rect>
+         <x>500</x>
+         <y>720</y>
+         <width>391</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Maior Salário</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lblTotalRegistros">
+       <property name="geometry">
+        <rect>
+         <x>760</x>
+         <y>720</y>
+         <width>391</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Total Registros</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
       </widget>
      </widget>
