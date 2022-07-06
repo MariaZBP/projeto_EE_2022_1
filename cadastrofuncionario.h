@@ -22,6 +22,8 @@ private slots:
 
     void on_txtCadastroFuncionario_Salario_editingFinished();
 
+    void on_btnCancelarFuncionario_clicked();
+
 private:
     Ui::CadastroFuncionario *ui;
 };

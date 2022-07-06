@@ -167,4 +167,58 @@ void TelaPrincipal::on_tableWidgetFuncionario_cellDoubleClicked(int row, int col
     int idFuncionario = ui->tableWidgetFuncionario->item(linhaAtual, 0)->text().toInt();
     EditarFuncionario dadosFuncionario(this, idFuncionario);
     dadosFuncionario.exec();
+
+    //--------------------------carregar os dados após a atualização------------------------
+    //limpa a tableWidgetFuncionario
+    limparTableWidGet(ui->tableWidgetFuncionario);
+
+    //pega os dados do BD e exibe na tableWidgetFuncionario
+    QSqlQuery pegaDados;
+    pegaDados.prepare("SELECT * FROM Funcionarios");
+    if(pegaDados.exec()){
+        int linha = 0;
+        ui->tableWidgetFuncionario->setColumnCount(8);
+        while(pegaDados.next()){
+            ui->tableWidgetFuncionario->insertRow(linha);
+            for(int i = 0; i < 8; i++){
+                ui->tableWidgetFuncionario->setItem(linha, i, new QTableWidgetItem(pegaDados.value(i).toString()));
+            }
+            ui->tableWidgetFuncionario->setRowHeight(linha, 40);
+            linha++;
+        }
+
+        //títulos da tableWidgetFuncionario
+        QStringList titulos = {"ID", "CPF", "Nome", "Salário", "Departamento", "Data Nascimento", "Telefone", "Email"};
+        ui->tableWidgetFuncionario->setHorizontalHeaderLabels(titulos);
+
+        //oculta os números das linhas que ficaram na esquerda
+        ui->tableWidgetFuncionario->verticalHeader()->setVisible(false);
+
+        //ajusta a largura das colunas da tableWidgetFuncionario
+        ui->tableWidgetFuncionario->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+        ui->tableWidgetFuncionario->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+
+        //desabilita a edição dos dados direto na tableWidgetFuncionario
+        ui->tableWidgetFuncionario->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        //seleciona a linha inteira da tableWidgetFuncionario
+        ui->tableWidgetFuncionario->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        //mudar a cor dos títulos da tableWidgetFuncionario
+        ui->tableWidgetFuncionario->setStyleSheet("QHeaderView::section {color: white; background-color: #55aa7f}");
+
+    }else{
+        QMessageBox::information(this,"Atenção","Erro ao carregar os dados dos funcionários!");
+    }
+
+}
+
+double TelaPrincipal::somarSalarios(QTableWidget *tabela, int coluna){
+    int totalLinhas;
+    double total = 0;
+    totalLinhas = tabela->rowCount();
+    for(int linha = 0; linha < totalLinhas; linha++){
+        total += tabela->item(linha, coluna)->text().toDouble();
+    }
+    return total;
 }

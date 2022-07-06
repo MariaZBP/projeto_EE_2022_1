@@ -52,6 +52,9 @@
          <pointsize>14</pointsize>
         </font>
        </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
       </widget>
       <widget class="QPushButton" name="btnExcluirFuncionario">
        <property name="geometry">

@@ -24,6 +24,8 @@ public:
 
     void limparTableWidGet(QTableWidget *limpaTW);
 
+    double somarSalarios(QTableWidget *tabela, int coluna);
+
 private slots:
     void on_txtPesquisarFuncionario_textChanged(const QString &arg1);
 

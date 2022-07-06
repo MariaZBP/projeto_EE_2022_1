@@ -66,3 +66,8 @@ void CadastroFuncionario::on_txtCadastroFuncionario_Salario_editingFinished()
     salarioTexto = formato.toString(valorMoeda, 'f', 2);
     ui->txtCadastroFuncionario_Salario->setText("R$ " + salarioTexto);
 }
+
+void CadastroFuncionario::on_btnCancelarFuncionario_clicked()
+{
+    close();
+}
