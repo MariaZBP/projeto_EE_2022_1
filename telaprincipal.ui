@@ -215,7 +215,7 @@
        <property name="geometry">
         <rect>
          <x>760</x>
-         <y>730</y>
+         <y>720</y>
          <width>391</width>
          <height>41</height>
         </rect>
@@ -226,7 +226,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Total Registros</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;Total Registros&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

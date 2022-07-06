@@ -78,6 +78,9 @@ void TelaPrincipal::carregarDadosFuncionarios(){
             ui->lblMaiorSalario->setText("Maior Salário = R$ " + salarioTexto2);
         }
 
+        //exibe o total de registros
+        ui->lblTotalRegistros->setText("Registros encontrados: " + QString::number(linha));
+
         //títulos da tableWidgetFuncionario
         QStringList titulos = {"ID", "CPF", "Nome", "Salário", "Departamento", "Data Nascimento", "Telefone", "Email"};
         ui->tableWidgetFuncionario->setHorizontalHeaderLabels(titulos);
@@ -164,6 +167,10 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
             salarioTexto2 = formato.toString(valorMoeda2, 'f', 2);
             ui->lblMaiorSalario->setText("Maior Salário = R$ " + salarioTexto2);
         }
+
+        //exibe o total de registros
+        ui->lblTotalRegistros->setText("Registros encontrados: " + QString::number(linha));
+
     }else{
         QMessageBox::information(this,"Atenção!", "Erro ao pesquisar funcionário!");
     }
