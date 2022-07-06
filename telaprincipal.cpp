@@ -29,11 +29,6 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
                                              "border-color: white;"
                                              "font: bold 16px;");
 
-    //marcando e desmarcando o radio button
-    ui->rdNome->setChecked(true);
-    ui->rdCPF->setChecked(false);
-    ui->rdDepartamento->setChecked(false);
-
     carregarDadosFuncionarios();
 }
 
@@ -117,25 +112,27 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
 {
     QString pesquisa;
     limparTableWidGet(ui->tableWidgetFuncionario);
+    QString colunaFiltro = ui->comboBoxColunaFiltro->currentText();
     QString textoPesquisa = ui->txtPesquisarFuncionario->text();
 
-    //filtra o tipo da pesquisa: cpf, nome ou departamento
-    if(textoPesquisa == ""){
-        if(ui->rdCPF->isChecked()){
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios order by cpfFuncionario";
-        }else if(ui->rdNome->isChecked()){
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios order by nomeFuncionario";
-        }else{
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios order by departamentoFuncionario";
-        }
+    if(colunaFiltro == "ID"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where idFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "CPF"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where cpfFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Nome"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where nomeFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Salário"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where salarioFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Departamento"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where departamentoFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Data de Nascimento"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where dataNascimentoFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Telefone"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where telefoneFuncionario like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Email"){
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where emailFuncionario like '%"+textoPesquisa+"%'";
     }else{
-        if(ui->rdCPF->isChecked()){
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where cpfFuncionario="+textoPesquisa+" order by cpfFuncionario";
-        }else if(ui->rdNome->isChecked()){
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where nomeFuncionario like '%"+textoPesquisa+"%' order by nomeFuncionario";
-        }else{
-            pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where departamentoFuncionario like '%"+textoPesquisa+"%' order by departamentoFuncionario";
-        }
+        pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where idFuncionario like '%"+textoPesquisa+"%'";
     }
 
     //pesquisar os dados na tabela

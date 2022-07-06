@@ -41,9 +41,9 @@
       <widget class="QLineEdit" name="txtPesquisarFuncionario">
        <property name="geometry">
         <rect>
-         <x>620</x>
+         <x>450</x>
          <y>160</y>
-         <width>541</width>
+         <width>491</width>
          <height>51</height>
         </rect>
        </property>
@@ -78,67 +78,10 @@
          <normaloff>:/Imagens/Imagens/excluir.png</normaloff>:/Imagens/Imagens/excluir.png</iconset>
        </property>
       </widget>
-      <widget class="QGroupBox" name="groupBox">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>120</y>
-         <width>561</width>
-         <height>91</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="title">
-        <string>Filtro</string>
-       </property>
-       <widget class="QRadioButton" name="rdCPF">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>40</y>
-          <width>95</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>CPF</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="rdNome">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>40</y>
-          <width>95</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Nome</string>
-        </property>
-       </widget>
-       <widget class="QRadioButton" name="rdDepartamento">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>40</y>
-          <width>161</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Departamento</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QLabel" name="label">
        <property name="geometry">
         <rect>
-         <x>620</x>
+         <x>450</x>
          <y>120</y>
          <width>281</width>
          <height>31</height>
@@ -215,7 +158,7 @@
        <property name="geometry">
         <rect>
          <x>760</x>
-         <y>720</y>
+         <y>730</y>
          <width>391</width>
          <height>41</height>
         </rect>
@@ -231,6 +174,74 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>120</y>
+         <width>281</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Filtro Colunas:</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="comboBoxColunaFiltro">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>160</y>
+         <width>391</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>ID</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>CPF</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Nome</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Salário</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Departamento</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Data de Nascimento</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Telefone</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Email</string>
+        </property>
+       </item>
       </widget>
      </widget>
      <widget class="QWidget" name="tab_2">
