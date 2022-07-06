@@ -43,10 +43,18 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    ../Imagens/imagens.qrc \
-    ../Imagens/imagens.qrc
+    imagens.qrc
 
 DISTFILES += \
+    ../Imagens/banco_de_dados.jpg \
+    ../Imagens/imagem3.jpg \
+    ../Imagens/images (1).jpg \
+    ../Imagens/telaLogin.jpg \
+    ../Imagens/cancelar.png \
+    ../Imagens/excel.png \
+    ../Imagens/excluir.png \
+    ../Imagens/novo.png \
+    ../Imagens/salvar.png \
     ../Imagens/banco_de_dados.jpg \
     ../Imagens/imagem3.jpg \
     ../Imagens/images (1).jpg \

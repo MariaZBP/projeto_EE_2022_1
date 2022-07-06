@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/Imagens">
+        <file>Imagens/banco_de_dados.jpg</file>
+        <file>Imagens/cancelar.png</file>
+        <file>Imagens/excel.png</file>
+        <file>Imagens/excluir.png</file>
+        <file>Imagens/imagem3.jpg</file>
+        <file>Imagens/images (1).jpg</file>
+        <file>Imagens/novo.png</file>
+        <file>Imagens/salvar.png</file>
+        <file>Imagens/telaLogin.jpg</file>
+    </qresource>
+</RCC>

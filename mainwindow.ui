@@ -21,7 +21,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../Imagens/telaLogin.jpg</pixmap>
+       <pixmap resource="imagens.qrc">:/Imagens/Imagens/telaLogin.jpg</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -43,6 +43,9 @@
          <font>
           <pointsize>16</pointsize>
          </font>
+        </property>
+        <property name="text">
+         <string>Aluno</string>
         </property>
        </widget>
       </item>
@@ -72,6 +75,9 @@
          <font>
           <pointsize>16</pointsize>
          </font>
+        </property>
+        <property name="text">
+         <string>aluno</string>
         </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
@@ -128,6 +134,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="imagens.qrc"/>
+ </resources>
  <connections/>
 </ui>

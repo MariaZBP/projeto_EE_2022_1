@@ -3,6 +3,9 @@
 
 #include <QDialog>
 
+#include <QtSql>
+#include <QMessageBox>
+
 namespace Ui {
 class TelaPrincipal;
 }
@@ -14,6 +17,8 @@ class TelaPrincipal : public QDialog
 public:
     explicit TelaPrincipal(QWidget *parent = nullptr);
     ~TelaPrincipal();
+
+    void carregarDados();
 
 private:
     Ui::TelaPrincipal *ui;
