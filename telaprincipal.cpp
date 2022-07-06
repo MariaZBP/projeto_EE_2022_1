@@ -150,4 +150,21 @@ void TelaPrincipal::on_btnExcluirFuncionario_clicked()
 {
     //começa da linha onde está selecionada
     int linhaAtual = ui->tableWidgetFuncionario->currentRow();
+    QString idSelecionado = ui->tableWidgetFuncionario->item(linhaAtual, 0)->text();
+    QSqlQuery bancoDados;
+    bancoDados.prepare("Delete from Funcionarios where idFuncionario="+idSelecionado);
+    if(bancoDados.exec()){
+        ui->tableWidgetFuncionario->removeRow(linhaAtual);
+        QMessageBox::information(this,"Aviso!","Funcionário excluído com sucesso!");
+    }else{
+        QMessageBox::information(this,"Atenção!","Erro ao excluir o funcionário!");
+    }
+}
+
+void TelaPrincipal::on_tableWidgetFuncionario_cellDoubleClicked(int row, int column)
+{
+    int linhaAtual = ui->tableWidgetFuncionario->currentRow();
+    int idFuncionario = ui->tableWidgetFuncionario->item(linhaAtual, 0)->text().toInt();
+    EditarFuncionario dadosFuncionario(this, idFuncionario);
+    dadosFuncionario.exec();
 }

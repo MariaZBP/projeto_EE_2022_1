@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QTableWidget>
 #include "cadastrofuncionario.h"
+#include "editarfuncionario.h"
 
 namespace Ui {
 class TelaPrincipal;
@@ -29,6 +30,8 @@ private slots:
     void on_btnCadastrarFuncionario_clicked();
 
     void on_btnExcluirFuncionario_clicked();
+
+    void on_tableWidgetFuncionario_cellDoubleClicked(int row, int column);
 
 private:
     Ui::TelaPrincipal *ui;

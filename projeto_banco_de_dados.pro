@@ -28,17 +28,20 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     telaprincipal.cpp \
-    cadastrofuncionario.cpp
+    cadastrofuncionario.cpp \
+    editarfuncionario.cpp
 
 HEADERS += \
         mainwindow.h \
     telaprincipal.h \
-    cadastrofuncionario.h
+    cadastrofuncionario.h \
+    editarfuncionario.h
 
 FORMS += \
         mainwindow.ui \
     telaprincipal.ui \
-    cadastrofuncionario.ui
+    cadastrofuncionario.ui \
+    editarfuncionario.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
