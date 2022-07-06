@@ -3,6 +3,13 @@
 
 #include <QMainWindow>
 
+#include <telaprincipal.h>
+
+#include <QtSql>
+#include <QDebug>
+#include <QFileInfo>
+#include <QMessageBox>
+
 namespace Ui {
 class MainWindow;
 }
