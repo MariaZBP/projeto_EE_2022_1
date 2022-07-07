@@ -19,9 +19,7 @@ public:
 
 private slots:
     void on_btnSalvarFuncionario_clicked();
-
     void on_txtCadastroFuncionario_Salario_editingFinished();
-
     void on_btnCancelarFuncionario_clicked();
 
 private:

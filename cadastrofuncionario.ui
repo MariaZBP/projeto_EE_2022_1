@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Cadastrar Funcionário</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(255,255,255);</string>
+  </property>
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
@@ -28,6 +31,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -49,6 +54,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -70,6 +77,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -91,6 +100,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -152,6 +163,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -173,6 +186,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -194,6 +209,8 @@
       <property name="font">
        <font>
         <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">

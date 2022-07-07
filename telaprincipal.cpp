@@ -7,7 +7,7 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //personalização da aba funcionários
+    //-------------------personalização da aba funcionários--------------------------------
     ui->txtPesquisarFuncionario->setStyleSheet("color: black;"
                                                "background-color: #aaff7f;"
                                                "selection-color: black;"
@@ -28,6 +28,26 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
                                              "border-radius: 10px;"
                                              "border-color: white;"
                                              "font: bold 16px;");
+
+    ui->btnExportarExcelFuncionario->setStyleSheet("color: black;"
+                                             "background-color: #00aaff;"
+                                             "border-style: outset;"
+                                             "border-width: 2px;"
+                                             "border-radius: 10px;"
+                                             "border-color: white;"
+                                             "font: bold 16px;");
+
+    ui->comboBoxColunaFiltro->setStyleSheet("color: black;"
+                                            "background-color: #aaff7f;"
+                                            "selection-color: black;"
+                                            "selection-background-color: #aaff7f;");
+
+    //mudar a cor do texto
+    QPalette paleta = ui->lblTotalSalario->palette();
+    paleta.setColor(ui->lblTotalSalario->foregroundRole(), Qt::blue);
+    ui->lblTotalSalario->setPalette(paleta);
+    ui->lblMaiorSalario->setPalette(paleta);
+    ui->lblTotalRegistrosFuncionarios->setPalette(paleta);
 
     carregarDadosFuncionarios();
 }
@@ -74,7 +94,7 @@ void TelaPrincipal::carregarDadosFuncionarios(){
         }
 
         //exibe o total de registros
-        ui->lblTotalRegistros->setText("Registros encontrados: " + QString::number(linha));
+        ui->lblTotalRegistrosFuncionarios->setText("Registros encontrados: " + QString::number(linha));
 
         //títulos da tableWidgetFuncionario
         QStringList titulos = {"ID", "CPF", "Nome", "Salário", "Departamento", "Data Nascimento", "Telefone", "Email"};
@@ -115,6 +135,7 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
     QString colunaFiltro = ui->comboBoxColunaFiltro->currentText();
     QString textoPesquisa = ui->txtPesquisarFuncionario->text();
 
+    //filtro para todas as colunas
     if(colunaFiltro == "ID"){
         pesquisa = "Select idFuncionario, cpfFuncionario, nomeFuncionario, salarioFuncionario, departamentoFuncionario, dataNascimentoFuncionario, telefoneFuncionario, emailFuncionario from Funcionarios where idFuncionario like '%"+textoPesquisa+"%'";
     }else if(colunaFiltro == "CPF"){
@@ -166,7 +187,7 @@ void TelaPrincipal::on_txtPesquisarFuncionario_textChanged(const QString &arg1)
         }
 
         //exibe o total de registros
-        ui->lblTotalRegistros->setText("Registros encontrados: " + QString::number(linha));
+        ui->lblTotalRegistrosFuncionarios->setText("Registros encontrados: " + QString::number(linha));
 
     }else{
         QMessageBox::information(this,"Atenção!", "Erro ao pesquisar funcionário!");
@@ -231,4 +252,51 @@ double TelaPrincipal::maiorSalario(QTableWidget *tabela, int coluna){
         }
     }
     return maiorSalario;
+}
+
+void TelaPrincipal::on_btnExportarExcelFuncionario_clicked()
+{
+    //caminha arquivo para salvar
+    auto nomeArquivo = QFileDialog::getSaveFileName(this, "Salvar", QDir::rootPath(), "CSV File (*.csv)");
+    if(nomeArquivo.isEmpty()){
+        //fecha se não estiver selecionado o caminho
+        return;
+    }
+    //QIODevice::WriteOnly = o arquivo está aberto para escrita
+    //QIODevice::Text = ao ler e escrever pula sempre para próxima linha
+    QFile file(nomeArquivo);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        return;
+    }
+    //a classe QTextStream cria uma interface amigável para leitura e escrita dos dados
+    QTextStream arquivoExcel(&file);
+    //contagem de linhas e colunas preenchidas
+    const int quantidadeLinhas = ui->tableWidgetFuncionario->rowCount();
+    const int quantidadeColunas= ui->tableWidgetFuncionario->columnCount();
+    for(int linha = 0; linha < quantidadeLinhas; linha++){
+        //pega as informações
+        arquivoExcel << getValueAt(linha, 0);
+        for(int coluna = 1; coluna < quantidadeColunas; coluna++){
+            //inserindo as informações no excel
+            arquivoExcel << "," << getValueAt(linha, coluna);
+        }
+        arquivoExcel << "\n";
+    }
+    //limpa
+    file.flush();
+    //fecha o arquivoExcel
+    file.close();
+    QMessageBox::information(this, "Aviso", "Relatório exportado com sucesso!");
+
+}
+
+//método para pegar os dados da tableWidgetFuncionario
+QString TelaPrincipal::getValueAt(int linha, int coluna){
+    if(!ui->tableWidgetFuncionario->item(linha, coluna)){
+        //se estiver limpa a tableWidgetFuncionario salva o arquivo em branco
+        return "";
+    }else{
+        //retorna as informações da posição da linha e da coluna
+        return  ui->tableWidgetFuncionario->item(linha, coluna)->text();
+    }
 }

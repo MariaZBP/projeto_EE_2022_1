@@ -12,6 +12,23 @@ CadastroFuncionario::CadastroFuncionario(QWidget *parent) :
     ui->txtCadastroFuncionario_Telefone->setInputMask("(99) 99999-9999");
     ui->txtCadastroFuncionario_DataNascimento->setInputMask("99/99/9999");
 
+    //personalização dos botões
+    ui->btnSalvarFuncionario->setStyleSheet("color: black;"
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
+
+    ui->btnCancelarFuncionario->setStyleSheet("color: black;"
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
+
 }
 
 CadastroFuncionario::~CadastroFuncionario()

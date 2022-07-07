@@ -9,6 +9,23 @@ EditarFuncionario::EditarFuncionario(QWidget *parent, int alterarFuncionario_ID)
 {
     ui->setupUi(this);
 
+    //personalização dos botões
+    ui->btnSalvarEdicaoFuncionario->setStyleSheet("color: black;"
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
+
+    ui->btnCancelarEdicaoFuncionario->setStyleSheet("color: black;"
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
+
     QSqlQuery dados;
     idSelecionado = alterarFuncionario_ID;
     QString id = QString::number(alterarFuncionario_ID);
