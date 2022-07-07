@@ -30,7 +30,7 @@
 </string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -309,7 +309,7 @@
         <string>Filtro Colunas:</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="txtPesquisarFuncionario_2">
+      <widget class="QLineEdit" name="txtPesquisarCliente">
        <property name="geometry">
         <rect>
          <x>430</x>
@@ -327,7 +327,7 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBoxColunaFiltro_2">
+      <widget class="QComboBox" name="comboBoxColunaFiltroCliente">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -377,7 +377,7 @@
         </property>
        </item>
       </widget>
-      <widget class="QPushButton" name="btnExcluirFuncionario_2">
+      <widget class="QPushButton" name="btnExcluirCliente">
        <property name="geometry">
         <rect>
          <x>320</x>
@@ -399,7 +399,7 @@
          <normaloff>:/Imagens/Imagens/excluir.png</normaloff>:/Imagens/Imagens/excluir.png</iconset>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnExportarExcelFuncionario_2">
+      <widget class="QPushButton" name="btnExportarExcelCliente">
        <property name="geometry">
         <rect>
          <x>900</x>
@@ -465,7 +465,7 @@
         <string>Digite algo para pesquisar:</string>
        </property>
       </widget>
-      <widget class="QTableWidget" name="tableWidgetFuncionario_2">
+      <widget class="QTableWidget" name="tableWidgetCliente">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -478,7 +478,7 @@
         <font/>
        </property>
       </widget>
-      <widget class="QPushButton" name="btnCadastrarFuncionario_2">
+      <widget class="QPushButton" name="btnCadastrarCliente">
        <property name="geometry">
         <rect>
          <x>20</x>

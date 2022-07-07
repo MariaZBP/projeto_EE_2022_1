@@ -50,6 +50,7 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
     ui->lblTotalRegistrosFuncionarios->setPalette(paleta);
 
     carregarDadosFuncionarios();
+    carregarDadosClientes();
 }
 
 TelaPrincipal::~TelaPrincipal()
@@ -299,4 +300,122 @@ QString TelaPrincipal::getValueAt(int linha, int coluna){
         //retorna as informações da posição da linha e da coluna
         return  ui->tableWidgetFuncionario->item(linha, coluna)->text();
     }
+}
+
+void TelaPrincipal::carregarDadosClientes(){
+
+    //limpa a tableWidgetCliente
+    limparTableWidGet(ui->tableWidgetCliente);
+
+    //pega os dados do BD e exibe na tableWidgetCliente
+    QSqlQuery pegaDados;
+    pegaDados.prepare("SELECT * FROM Clientes");
+    if(pegaDados.exec()){
+        int linha = 0;
+        ui->tableWidgetCliente->setColumnCount(7);
+        while(pegaDados.next()){
+            ui->tableWidgetCliente->insertRow(linha);
+            for(int i = 0; i < 7; i++){
+                ui->tableWidgetCliente->setItem(linha, i, new QTableWidgetItem(pegaDados.value(i).toString()));
+            }
+            ui->tableWidgetCliente->setRowHeight(linha, 40);
+            linha++;
+        }
+
+        ui->lblTotalRegistrosClientes->setText("Registros encontrados: " + QString::number(linha));
+
+        //coloca os títulos na tabela
+        QStringList titulos = {"ID", "CPF", "Nome", "Endereço", "Data Nascimento", "Telefone", "E-mail"};
+
+        ui->tableWidgetCliente->setHorizontalHeaderLabels(titulos);
+
+        //oculta os números das linhas que ficaram a esquerda
+        ui->tableWidgetCliente->verticalHeader()->setVisible(false);
+
+        //ajusta a largura das colunas
+        ui->tableWidgetCliente->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+        ui->tableWidgetCliente->verticalHeader()->resizeSections(QHeaderView::ResizeToContents);
+
+        //desabilita a edição dos dados direto na tableWidgetClientes
+        ui->tableWidgetCliente->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        //seleciona a linha inteira da tableWidgetClientes
+        ui->tableWidgetCliente->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        //mudar a cor dos títulos da tabela
+        ui->tableWidgetCliente->setStyleSheet("QHeaderView::section {color: white; background-color: #55aa7f}");
+    }else{
+        QMessageBox::information(this, "Atenção", "Erro ao carregar os dados dos clientes!");
+    }
+}
+
+void TelaPrincipal::on_txtPesquisarCliente_textChanged(const QString &arg1)
+{
+    QString pesquisa;
+    limparTableWidGet(ui->tableWidgetCliente);
+    QString colunaFiltro = ui->comboBoxColunaFiltroCliente->currentText();
+    QString textoPesquisa = ui->txtPesquisarCliente->text();
+
+    if(colunaFiltro == "ID"){
+        //digitando parte do nome o like já trás ele
+        //%-> começa em qualquer valor e termina em qualquer valor
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where idCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "CPF"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where cpfCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Nome"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where nomeCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Endereço"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where EnderecoCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Data de Nascimento"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where dataNascimentoCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Telefone"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where telefoneCliente like '%"+textoPesquisa+"%'";
+    }else if(colunaFiltro == "Email"){
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where emailCliente like '%"+textoPesquisa+"%'";
+    }else{
+        pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where idCliente like '%"+textoPesquisa+"%'";
+    }
+
+    int linha = 0;
+
+    QSqlQuery pegaDados;
+    pegaDados.prepare(pesquisa);
+
+    if(pegaDados.exec()){
+
+        while(pegaDados.next()){
+
+            //insere a linha de acordo com a variável linha
+            ui->tableWidgetCliente->insertRow(linha);
+
+            //passa os itens (linha, coluna, item QTableWidgetItem)
+            for(int i = 0; i < 7; i++){
+
+                ui->tableWidgetCliente->setItem(linha, i, new QTableWidgetItem(pegaDados.value(i).toString()));
+
+            }
+
+            ui->tableWidgetCliente->setRowHeight(linha, 40);
+
+            linha++;
+
+        }
+
+        ui->lblTotalRegistrosClientes->setText("Registros encontrados: " + QString::number(linha));
+
+
+    }else{
+
+        QMessageBox::information(this, "Atenção", "Erro ao encontrar dados dos clientes!");
+
+    }
+}
+
+void TelaPrincipal::on_btnCadastrarCliente_clicked()
+{
+    //CadastroCliente abreFormularioCadastro;
+    //abreFormularioCadastro.exec();
+
+    //depois que cadastrar um funcionário, carrega os dados novamente
+    carregarDadosClientes();
 }
