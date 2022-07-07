@@ -37,6 +37,7 @@ private slots:
     void on_btnExportarExcelFuncionario_clicked();
     void on_txtPesquisarCliente_textChanged(const QString &arg1);
     void on_btnCadastrarCliente_clicked();
+    void on_btnExcluirCliente_clicked();
 
 private:
     QString getValueAt(int linha, int coluna);

@@ -438,6 +438,21 @@ void TelaPrincipal::on_btnCadastrarCliente_clicked()
     CadastroCliente abreFormularioCadastro;
     abreFormularioCadastro.exec();
 
-    //depois que cadastrar um funcionário, carrega os dados novamente
+    //depois que cadastrar um cliente, carrega os dados novamente
     carregarDadosClientes();
+}
+
+void TelaPrincipal::on_btnExcluirCliente_clicked()
+{
+    //começa da linha onde está selecionada
+    int linhaAtual = ui->tableWidgetCliente->currentRow();
+    QString idSelecionado = ui->tableWidgetCliente->item(linhaAtual, 0)->text();
+    QSqlQuery bancoDados;
+    bancoDados.prepare("Delete from Clientes where idCliente="+idSelecionado);
+    if(bancoDados.exec()){
+        ui->tableWidgetCliente->removeRow(linhaAtual);
+        QMessageBox::information(this,"Aviso!","Cliente excluído com sucesso!");
+    }else{
+        QMessageBox::information(this,"Atenção!","Erro ao excluir os dados do cliente selecionado!");
+    }
 }
