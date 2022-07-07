@@ -40,9 +40,11 @@ private slots:
     void on_btnCadastrarCliente_clicked();
     void on_btnExcluirCliente_clicked();
     void on_tableWidgetCliente_cellDoubleClicked(int row, int column);
+    void on_btnExportarExcelCliente_clicked();
 
 private:
-    QString getValueAt(int linha, int coluna);
+    QString getValueAtFuncionarios(int linha, int coluna);
+    QString getValueAtClientes(int linha, int coluna);
     Ui::TelaPrincipal *ui;
 };
 

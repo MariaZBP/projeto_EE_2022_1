@@ -312,10 +312,10 @@ void TelaPrincipal::on_btnExportarExcelFuncionario_clicked()
     const int quantidadeColunas= ui->tableWidgetFuncionario->columnCount();
     for(int linha = 0; linha < quantidadeLinhas; linha++){
         //pega as informações
-        arquivoExcel << getValueAt(linha, 0);
+        arquivoExcel << getValueAtFuncionarios(linha, 0);
         for(int coluna = 1; coluna < quantidadeColunas; coluna++){
             //inserindo as informações no excel
-            arquivoExcel << "," << getValueAt(linha, coluna);
+            arquivoExcel << "," << getValueAtFuncionarios(linha, coluna);
         }
         arquivoExcel << "\n";
     }
@@ -328,7 +328,7 @@ void TelaPrincipal::on_btnExportarExcelFuncionario_clicked()
 }
 
 //método para pegar os dados da tableWidgetFuncionario
-QString TelaPrincipal::getValueAt(int linha, int coluna){
+QString TelaPrincipal::getValueAtFuncionarios(int linha, int coluna){
     if(!ui->tableWidgetFuncionario->item(linha, coluna)){
         //se estiver limpa a tableWidgetFuncionario salva o arquivo em branco
         return "";
@@ -464,4 +464,51 @@ void TelaPrincipal::on_tableWidgetCliente_cellDoubleClicked(int row, int column)
     EditarCliente dadosCliente(this, idCliente);
     dadosCliente.exec();
     carregarDadosClientes();
+}
+
+void TelaPrincipal::on_btnExportarExcelCliente_clicked()
+{
+    //caminha arquivo para salvar
+    auto nomeArquivo = QFileDialog::getSaveFileName(this, "Salvar", QDir::rootPath(), "CSV File (*.csv)");
+    if(nomeArquivo.isEmpty()){
+        //fecha se não estiver selecionado o caminho
+        return;
+    }
+    //QIODevice::WriteOnly = o arquivo está aberto para escrita
+    //QIODevice::Text = ao ler e escrever pula sempre para próxima linha
+    QFile file(nomeArquivo);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+        return;
+    }
+    //a classe QTextStream cria uma interface amigável para leitura e escrita dos dados
+    QTextStream arquivoExcel(&file);
+    //contagem de linhas e colunas preenchidas
+    const int quantidadeLinhas = ui->tableWidgetCliente->rowCount();
+    const int quantidadeColunas= ui->tableWidgetCliente->columnCount();
+    for(int linha = 0; linha < quantidadeLinhas; linha++){
+        //pega as informações
+        arquivoExcel << getValueAtClientes(linha, 0);
+        for(int coluna = 1; coluna < quantidadeColunas; coluna++){
+            //inserindo as informações no excel
+            arquivoExcel << "," << getValueAtClientes(linha, coluna);
+        }
+        arquivoExcel << "\n";
+    }
+    //limpa
+    file.flush();
+    //fecha o arquivoExcel
+    file.close();
+    QMessageBox::information(this, "Aviso", "Relatório exportado com sucesso!");
+
+}
+
+//método para pegar os dados da tableWidgetCliente
+QString TelaPrincipal::getValueAtClientes(int linha, int coluna){
+    if(!ui->tableWidgetCliente->item(linha, coluna)){
+        //se estiver limpa a tableWidgetCliente salva o arquivo em branco
+        return "";
+    }else{
+        //retorna as informações da posição da linha e da coluna
+        return  ui->tableWidgetCliente->item(linha, coluna)->text();
+    }
 }
