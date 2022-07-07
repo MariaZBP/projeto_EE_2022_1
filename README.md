@@ -17,13 +17,14 @@ Possui as seguintes janelas implementadas:
   - Funcionários
   - Clientes
 - Cadastro Funcionário
+
+  ![Imagem3](janelaCadastro.png)
+
 - Editar Funcionário
 - Cadastro Cliente
 - Editar Cliente
 
 Foi utilizado o SQL Lite Studio para gerar o banco de dados.
-
-![Imagem2](imagemTelaPrincipal.png)
 
 #### _Tela Login_
 
@@ -32,6 +33,8 @@ Há uma tela inicial de login. Como o aplicativo tem conexão com um banco de da
 #### _Tela Principal_
 
 Uma segunda janela é aberta após a autenticação onde, estão presentes duas abas (tabWidget). Uma representa uma base de dados dos funcionários e a outra representa uma base de dados dos clientes.
+
+![Imagem2](imagemTelaPrincipal.png)
 
 Em cada aba existem 3 botões, um para gerar o cadastro, outro para excluir um cadastro e um terceiro para gerar o arquivo .csv. Em Filtro Colunas, é possível realizar uma pesquisa filtrando por cada campo presente na tabela apresentada. Pode ser digitado o que se deseja pesquisar no campo: Digite algo para pesquisar. Ambas as tabelas, Funcionários e Clientes, possuem essas funcionalidades.
 
