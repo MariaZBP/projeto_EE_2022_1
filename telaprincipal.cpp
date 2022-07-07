@@ -456,3 +456,12 @@ void TelaPrincipal::on_btnExcluirCliente_clicked()
         QMessageBox::information(this,"Atenção!","Erro ao excluir os dados do cliente selecionado!");
     }
 }
+
+void TelaPrincipal::on_tableWidgetCliente_cellDoubleClicked(int row, int column)
+{
+    int linhaAtual = ui->tableWidgetCliente->currentRow();
+    int idCliente = ui->tableWidgetCliente->item(linhaAtual, 0)->text().toInt();
+    EditarCliente dadosCliente(this, idCliente);
+    dadosCliente.exec();
+    carregarDadosClientes();
+}

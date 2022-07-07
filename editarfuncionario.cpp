@@ -9,6 +9,11 @@ EditarFuncionario::EditarFuncionario(QWidget *parent, int alterarFuncionario_ID)
 {
     ui->setupUi(this);
 
+    //inserindo máscaras nos campos
+    ui->txtEditarFuncionario_CPF->setInputMask("000.000.000-00");
+    ui->txtEditarFuncionario_Telefone->setInputMask("(99) 99999-9999");
+    ui->txtEditarFuncionario_DataNascimento->setInputMask("99/99/9999");
+
     //personalização dos botões
     ui->btnSalvarEdicaoFuncionario->setStyleSheet("color: black;"
                                                "background-color: #00ff7f;"

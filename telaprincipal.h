@@ -11,6 +11,7 @@
 #include <QTextStream>
 #include <QFile>
 #include "cadastrocliente.h"
+#include "editarcliente.h"
 
 namespace Ui {
 class TelaPrincipal;
@@ -38,6 +39,7 @@ private slots:
     void on_txtPesquisarCliente_textChanged(const QString &arg1);
     void on_btnCadastrarCliente_clicked();
     void on_btnExcluirCliente_clicked();
+    void on_tableWidgetCliente_cellDoubleClicked(int row, int column);
 
 private:
     QString getValueAt(int linha, int coluna);
