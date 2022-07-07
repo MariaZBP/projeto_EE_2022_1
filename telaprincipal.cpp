@@ -42,12 +42,48 @@ TelaPrincipal::TelaPrincipal(QWidget *parent) :
                                             "selection-color: black;"
                                             "selection-background-color: #aaff7f;");
 
+    //-------------------personalização da aba clientes--------------------------------
+    ui->txtPesquisarCliente->setStyleSheet("color: black;"
+                                               "background-color: #aaff7f;"
+                                               "selection-color: black;"
+                                               "selection-background-color: #aaff7f;");
+
+    ui->btnCadastrarCliente->setStyleSheet("color: black;"
+                                               "background-color: #00ff7f;"
+                                               "border-style: outset;"
+                                               "border-width: 2px;"
+                                               "border-radius: 10px;"
+                                               "border-color: white;"
+                                               "font: bold 16px;");
+
+    ui->btnExcluirCliente->setStyleSheet("color: black;"
+                                             "background-color: #00ff7f;"
+                                             "border-style: outset;"
+                                             "border-width: 2px;"
+                                             "border-radius: 10px;"
+                                             "border-color: white;"
+                                             "font: bold 16px;");
+
+    ui->btnExportarExcelCliente->setStyleSheet("color: black;"
+                                             "background-color: #00aaff;"
+                                             "border-style: outset;"
+                                             "border-width: 2px;"
+                                             "border-radius: 10px;"
+                                             "border-color: white;"
+                                             "font: bold 16px;");
+
+    ui->comboBoxColunaFiltroCliente->setStyleSheet("color: black;"
+                                            "background-color: #aaff7f;"
+                                            "selection-color: black;"
+                                            "selection-background-color: #aaff7f;");
+
     //mudar a cor do texto
     QPalette paleta = ui->lblTotalSalario->palette();
     paleta.setColor(ui->lblTotalSalario->foregroundRole(), Qt::blue);
     ui->lblTotalSalario->setPalette(paleta);
     ui->lblMaiorSalario->setPalette(paleta);
     ui->lblTotalRegistrosFuncionarios->setPalette(paleta);
+    ui->lblTotalRegistrosClientes->setPalette(paleta);
 
     carregarDadosFuncionarios();
     carregarDadosClientes();
@@ -376,45 +412,31 @@ void TelaPrincipal::on_txtPesquisarCliente_textChanged(const QString &arg1)
         pesquisa = "Select idCliente, cpfCliente, nomeCliente, EnderecoCliente, dataNascimentoCliente, telefoneCliente, emailCliente From Clientes where idCliente like '%"+textoPesquisa+"%'";
     }
 
+    //pesquisar os dados na tabela
     int linha = 0;
-
     QSqlQuery pegaDados;
     pegaDados.prepare(pesquisa);
-
     if(pegaDados.exec()){
-
         while(pegaDados.next()){
-
             //insere a linha de acordo com a variável linha
             ui->tableWidgetCliente->insertRow(linha);
-
             //passa os itens (linha, coluna, item QTableWidgetItem)
             for(int i = 0; i < 7; i++){
-
                 ui->tableWidgetCliente->setItem(linha, i, new QTableWidgetItem(pegaDados.value(i).toString()));
-
             }
-
             ui->tableWidgetCliente->setRowHeight(linha, 40);
-
             linha++;
-
         }
-
         ui->lblTotalRegistrosClientes->setText("Registros encontrados: " + QString::number(linha));
-
-
     }else{
-
         QMessageBox::information(this, "Atenção", "Erro ao encontrar dados dos clientes!");
-
     }
 }
 
 void TelaPrincipal::on_btnCadastrarCliente_clicked()
 {
-    //CadastroCliente abreFormularioCadastro;
-    //abreFormularioCadastro.exec();
+    CadastroCliente abreFormularioCadastro;
+    abreFormularioCadastro.exec();
 
     //depois que cadastrar um funcionário, carrega os dados novamente
     carregarDadosClientes();

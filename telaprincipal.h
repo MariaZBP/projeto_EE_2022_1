@@ -10,6 +10,7 @@
 #include <QFileDialog>
 #include <QTextStream>
 #include <QFile>
+#include "cadastrocliente.h"
 
 namespace Ui {
 class TelaPrincipal;

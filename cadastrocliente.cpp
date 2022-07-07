@@ -59,3 +59,8 @@ void CadastroCliente::on_btnSalvarCliente_clicked()
         QMessageBox::information(this, "Atenção!","Não foi possível salvar as informações no Banco de Dados!");
     }
 }
+
+void CadastroCliente::on_btnCancelarCliente_clicked()
+{
+    close();
+}

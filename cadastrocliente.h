@@ -19,6 +19,7 @@ public:
 
 private slots:
     void on_btnSalvarCliente_clicked();
+    void on_btnCancelarCliente_clicked();
 
 private:
     Ui::CadastroCliente *ui;
